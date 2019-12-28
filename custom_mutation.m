@@ -14,12 +14,12 @@ function NewChrom = custom_mutation(OldChrom,Representation)
     end
 
     % swap three random cities in the tour
-    for c = 1:size(NewChrom,2)
+    for c = 1:size(NewChrom,1)
         chrom =  NewChrom(c,:);
         
-        index1 = randi([1,size(NewChrom,2)]);
-        index2 = randi([1,size(NewChrom,2)]);
-        index3 = randi([1,size(NewChrom,2)]);
+        index1 = randi([1 size(NewChrom,2)]);
+        index2 = randi([1 size(NewChrom,2)]);
+        index3 = randi([1 size(NewChrom,2)]);
 
         buffer = chrom(index1);
         chrom(index1) = chrom(index2);

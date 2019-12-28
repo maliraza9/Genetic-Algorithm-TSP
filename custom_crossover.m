@@ -22,31 +22,36 @@ function NewChrom = custom_crossover(OldChrom, PR_Crossover)
     [rows,cols]=size(OldChrom);
     NewChrom = OldChrom;
 
-       row = 1;
-       %assumes even nb of chroms
-       while row < rows
+   row = 1;
+   %assumes even nb of chroms
+   while row < rows
 
-            % crossover of the two chromosomes
-            % results in 2 offsprings
-            if rand < PR_Crossover	% recombine with a given probability
-                %find crossover index
-                index = randi([2,cols -1]);
-                
-                %split up first chrom at index
-                a = NewChrom(row,1:index - 1);
-                b = NewChrom(row,index:cols);
-                
-                %find remaining cities in second chrom
-                s = NewChrom(row + 1,:);
-                
-                c = setdiff(s,a);
-                d = setdiff(s,b); 
-                
-                %add to first
-                NewChrom(row,:) = [a,c];
-                NewChrom(row+1,:) = [b,d];
-            end
-            
-            row = row+2;
-       end
+        % crossover of the two chromosomes
+        % results in 2 offsprings
+        if rand < PR_Crossover	% recombine with a given probability
+            %find crossover index
+            index = randi([2 (cols-1)]);
+
+            %split up first chrom at index
+            a = NewChrom(row,1:index - 1);
+            b = NewChrom(row,index:cols);
+
+            %find remaining cities in second chrom
+            s = NewChrom(row + 1,:);
+
+            c = setdiff(s,a,'stable');
+            d = setdiff(s,b,'stable'); 
+
+            %add to first
+            ac = [a,c];
+            bd = [b,d];
+            NewChrom(row,:) = ac;
+            NewChrom(row+1,:) = bd;
+
+        end
+
+        row = row+2;
+   end
+   %disp(NewChrom);
+
 end
