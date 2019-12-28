@@ -8,10 +8,36 @@
 %
 
 function ObjVal = tspfun(Phen, Dist);
-	ObjVal=Dist(Phen(:,1),1);
+    %PhenAdj = path2adj(Phen);
+    max = size(Phen,2);
+    
+%     %Checkvalues
+%     col = round(Phen(:,1));
+%     for i = 1:size(col)
+%         if col(i)<1
+%             col(i) = 1;
+%         elseif col(i) > max
+%             col(i) = max;
+%         end
+%     end
+    
+	ObjVal = Dist(Phen(:,1),1);
+    %disp(Phen);
 	for t=2:size(Phen,2)
-
+        
+%         %Checkvalues
+%         col = round(Phen(:,t));
+%         for i = 1:size(col)
+%             if col(i)<1
+%                 col(i) = 1;
+%             elseif col(i) > max
+%                 col(i) = max;
+%             end
+%         end
+    
+        %disp(Phen(:,t))
     	ObjVal=ObjVal+Dist(Phen(:,t),t);
+    
 	end
 
 
